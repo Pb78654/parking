@@ -7,11 +7,11 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: [true, "Please Enter Your Last Name"],
+        required: [true, "Please Enter Your Email"],
     },
     phonenumber: {
-        type: Number,
-        required: [true, "Please Enter Your Email"],
+        type: String,
+        required: [true, "Please Enter Your PhoneNumber"],
         unique: true, // Ensure email uniqueness
     },
     password: {
@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        required: [true, "Please Enter Your Age"],
+        required: [true, "Please Enter Your role"],
     }
 });
 
