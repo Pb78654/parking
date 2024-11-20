@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { registerUser } = require("../controllers/SignupController");
+const { registerUser , loginUser } = require("../controllers/SignupController");
 
 // router.post("/signup", registerUser);
 
-router.post("/signup", (req, res) => {
+router.post("/signup",registerUser ,(req, res) => {
     console.log("Incoming Data:", req.body); // Log incoming form data
     res.status(201).json({ message: "Signup data received successfully" });
 });
+
+router.post("/login" , loginUser);
 
 module.exports = router;
