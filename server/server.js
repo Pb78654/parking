@@ -14,7 +14,8 @@ app.use(express.json());
 const signuproutes = require("./routes/SignUpRoutes");
 app.use("/" , signuproutes);
 
-
+const parkingspace = require("./routes/ParkingspaceRoutes");
+app.use("/parking" , parkingspace);
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
