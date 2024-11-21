@@ -1,8 +1,16 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/SignUpModel");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
 
+
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.PRIVATE_KEY, { expiresIn: '30d' });
+};
 // Register user
+
+
+
 const registerUser = asyncHandler(async (req, res) => {
     const { username,email, phonenumber, password, role } = req.body;
 
@@ -34,7 +42,8 @@ const registerUser = asyncHandler(async (req, res) => {
     if (user) {
         res.status(201).json({
             _id: user.id,
-            email: user.email
+            email: user.email,
+            token: generateToken(user._id)
         });
     } else {
         res.status(400);
@@ -66,8 +75,11 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(200).json({
         _id: user.id,
         email: user.email,
-        message: "Login successful"
+        message: "Login successful",
+        token: generateToken(user._id)
     });
 });
+
+
 
 module.exports = {registerUser,loginUser};

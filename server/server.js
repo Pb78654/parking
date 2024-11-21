@@ -16,6 +16,9 @@ app.use("/" , signuproutes);
 
 const parkingspace = require("./routes/ParkingspaceRoutes");
 app.use("/parking" , parkingspace);
+
+const walletRoutes = require("./routes/WalletRoutes");
+app.use("/wallet", walletRoutes);
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
